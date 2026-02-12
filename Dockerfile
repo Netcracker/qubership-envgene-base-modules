@@ -1,41 +1,48 @@
 #######################################
 # Stage 1 
-FROM alpine:3.20 as build
+FROM python:3.12-alpine3.19 AS build
 
 COPY build/sources.list /etc/apk/repositories
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
     gcc \
-    curl \
     musl-dev \
-    python3-dev=3.12.11-r0 \
     libffi-dev \
     openssl-dev \
-    py3-pip
+    libxml2-dev \
+    libxslt-dev \
+    zlib-dev \
+    git \
+    curl \
+    jq \
+    openssh-client \
+    sudo \
+    zip \
+    unzip
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 COPY build/requirements.txt /build/requirements.txt
 
-RUN test -d /module/venv || python3 -m venv /module/venv
 RUN source /module/venv/bin/activate \
     && pip install --upgrade pip setuptools \
     && pip install --no-cache-dir -r /build/requirements.txt
-RUN curl --retry 3 --retry-connrefused --retry-delay 5 -LO https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 && \
-    chmod +x sops-v3.9.0.linux.amd64 && \
-    mv sops-v3.9.0.linux.amd64 /usr/local/bin/sops
+# Download and install SOPS for secrets management
+RUN wget --tries=3 \
+    https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
+    -O /usr/local/bin/sops && \
+    chmod +x /usr/local/bin/sops
 
 
 
 #######################################
 # Stage 2
-FROM alpine:3.20
+FROM python:3.12-alpine3.19 AS runtime
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 
 COPY build/sources.list /etc/apk/repositories
 RUN apk add --no-cache \
-    python3-dev=3.12.11-r0 \
     bash \
     ca-certificates \
     tar \
