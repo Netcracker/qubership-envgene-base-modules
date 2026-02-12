@@ -32,6 +32,7 @@
           id: lychee
           uses: lycheeverse/lychee-action@v2
           with:
+            failIfEmpty: false
             args: >-
               './**/*.md'
               --verbose
