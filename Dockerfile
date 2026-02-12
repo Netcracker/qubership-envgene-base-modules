@@ -15,7 +15,6 @@ RUN apk add --no-cache \
     curl \
     jq \
     openssh-client \
-    sudo \
     zip \
     unzip
 
@@ -23,11 +22,11 @@ COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 COPY build/requirements.txt /build/requirements.txt
 
-RUN source /module/venv/bin/activate \
+RUN . /module/venv/bin/activate \
     && pip install --upgrade pip setuptools \
     && pip install --no-cache-dir -r /build/requirements.txt
 # Download and install SOPS for secrets management
-RUN wget --tries=3 \
+RUN wget --tries=3 --progress=dot:giga \
     https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
     -O /usr/local/bin/sops && \
     chmod +x /usr/local/bin/sops
