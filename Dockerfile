@@ -26,10 +26,9 @@ RUN python -m venv /module/venv \
     && /module/venv/bin/pip install --upgrade pip setuptools \
     && /module/venv/bin/pip install --no-cache-dir -r /build/requirements.txt
 # Download and install SOPS for secrets management
-RUN wget --tries=3 --progress=dot:giga \
+RUN curl -sSL -o /usr/local/bin/sops \
     https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
-    -O /usr/local/bin/sops && \
-    chmod +x /usr/local/bin/sops
+    && chmod +x /usr/local/bin/sops
 
 
 
