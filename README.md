@@ -1,4 +1,4 @@
-# qubership-envgene-base-modules
+# Qubership Envgene Base Modules
 
 A base Docker image containing common components and dependencies for Qubership Envgene images. This image is designed to be used as a foundation for [build_envgene](https://github.com/Netcracker/qubership-envgene), [build_pipegene](https://github.com/Netcracker/qubership-envgene), and [build_effective_set_generator](https://github.com/Netcracker/qubership-envgene) images.
 
@@ -40,7 +40,7 @@ This image provides a consistent, lightweight Alpine-based environment with:
 
 ### System packages
 
-- **Runtime:** bash, ca-certificates, curl, jq, yq, gettext, sed, age, git, openssh-client, zip, unzip, libffi, openssl
+- **Runtime:** Bash, ca-certificates, cURL, jq, yq, gettext, sed, age, Git, openssh-client, ZIP, unzip, libffi, OpenSSL
 - **Build stage:** gcc, musl-dev, libffi-dev, openssl-dev, libxml2-dev, libxslt-dev, zlib-dev (for compiling Python extensions)
 
 ## Usage
@@ -56,7 +56,7 @@ FROM ghcr.io/netcracker/qubership-envgene-base-modules:latest
 
 Images are published to GitHub Container Registry:
 
-```
+```text
 ghcr.io/netcracker/qubership-envgene-base-modules
 ```
 
