@@ -37,7 +37,7 @@ template: |
   ### 🐳 Docker Images
 
   - **[qubership-pipegene](https://github.com/$OWNER/$REPOSITORY/pkgs/container/qubership-pipegene)** - `ghcr.io/netcracker/qubership-pipegene:$RESOLVED_VERSION`
- 
+
   ---
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
