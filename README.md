@@ -49,7 +49,6 @@ This image provides a consistent, lightweight Alpine-based environment with:
 
 ```dockerfile
 FROM ghcr.io/netcracker/qubership-envgene-base-modules:latest
-# Add your application-specific layers
 ```
 
 ### Image location
