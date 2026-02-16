@@ -57,7 +57,8 @@ RUN apk add --no-cache \
     openssl=3.1.8-r1 \
     openssh-client=9.6_p1-r2 \
     zip=3.0-r12 \
-    unzip=6.0-r14
+    unzip=6.0-r14 \
+    sudo=1.9.14p3-r0
 
 COPY --from=build /module /module
 COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
@@ -76,6 +77,5 @@ ENV PATH=/module/venv/bin:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-USER ci:ci
 WORKDIR /module/scripts
 #ENTRYPOINT ["/bin/bash", "-c"] # https://github.com/moby/moby/issues/3753
