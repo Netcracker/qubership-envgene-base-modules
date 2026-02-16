@@ -43,6 +43,8 @@ COPY build/constraint.txt /build/constraint.txt
 # Optional: use custom repos - uncomment if needed
 # COPY build/sources.list /etc/apk/repositories
 RUN apk add --no-cache \
+    gcc=13.2.1_git20231014-r0 \
+    musl-dev=1.2.4_git20230717-r5 \
     bash=5.2.21-r0 \
     ca-certificates=20240226-r0 \
     tar=1.35-r2 \
