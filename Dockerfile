@@ -58,7 +58,7 @@ RUN apk add --no-cache \
     openssh-client=9.6_p1-r2 \
     zip=3.0-r12 \
     unzip=6.0-r14 \
-    sudo=1.9.14p3-r0
+    sudo=1.9.15_p2-r0
 
 COPY --from=build /module /module
 COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
