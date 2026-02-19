@@ -1,4 +1,4 @@
-### Stage 1 - build
+### Stage 1 - Build
 FROM python:3.12-alpine3.19 AS build
 
 RUN apk add --no-cache \
