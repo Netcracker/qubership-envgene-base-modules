@@ -1,9 +1,6 @@
-#######################################
-# Stage 1 
+### Stage 1 - build
 FROM python:3.12-alpine3.19 AS build
 
-# Optional: use custom repos (e.g. internal mirror) - uncomment if needed
-# COPY build/sources.list /etc/apk/repositories
 RUN apk add --no-cache \
     gcc=13.2.1_git20231014-r0 \
     musl-dev=1.2.4_git20230717-r5 \
@@ -26,22 +23,17 @@ COPY build/requirements.txt /build/requirements.txt
 RUN python -m venv /module/venv \
     && /module/venv/bin/pip install --no-cache-dir pip==26.0.1 setuptools==81.0.0 wheel==0.46.3 \
     && /module/venv/bin/pip install --no-cache-dir --retries 10 --timeout 60 -r /build/requirements.txt
-# Download and install SOPS for secrets management
+
 RUN curl -sSL -o /usr/local/bin/sops \
     https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
     && chmod +x /usr/local/bin/sops
 
-
-
-#######################################
-# Stage 2
+### Stage 2 - Runtime
 FROM python:3.12-alpine3.19 AS runtime
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 
-# Optional: use custom repos - uncomment if needed
-# COPY build/sources.list /etc/apk/repositories
 RUN apk add --no-cache \
     gcc=13.2.1_git20231014-r0 \
     musl-dev=1.2.4_git20230717-r5 \
@@ -66,7 +58,6 @@ COPY --from=build /module /module
 COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
 COPY scripts /module/scripts
 
-# Create directories for CI environments (GitHub Actions, GitLab CI)
 RUN mkdir -p /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache && \
     chmod 777 /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache
 
@@ -80,4 +71,3 @@ ENV PATH=/module/venv/bin:$PATH \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /module/scripts
-#ENTRYPOINT ["/bin/bash", "-c"] # https://github.com/moby/moby/issues/3753
