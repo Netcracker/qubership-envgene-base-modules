@@ -1,6 +1,6 @@
-name: "Release: Envgene Base Modules docker image"
+name: "[Release] Envgene Base Modules docker image"
 
-run-name: "Release Envgene Base Modules docker image: ${{ inputs.version }}"
+run-name: "[Release] Envgene Base Modules docker image: ${{ inputs.version }}"
 
 env:
   REGISTRY: ghcr.io

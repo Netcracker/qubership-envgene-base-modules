@@ -36,7 +36,7 @@ template: |
 
   ### 🐳 Docker Images
 
-  - **[qubership-pipegene](https://github.com/$OWNER/$REPOSITORY/pkgs/container/qubership-pipegene)** - `ghcr.io/netcracker/qubership-pipegene:$RESOLVED_VERSION`
+  - **[qubership-envgene-base-modules](https://github.com/$OWNER/$REPOSITORY/pkgs/container/qubership-envgene-base-modules)** - `ghcr.io/netcracker/qubership-envgene-base-modules:$RESOLVED_VERSION`
 
   ---
 
