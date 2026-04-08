@@ -1,20 +1,20 @@
 ### Stage 1 - Build
-FROM python:3.12-alpine3.19 AS build
+FROM python:3.12-alpine3.23 AS build
 
 RUN apk add --no-cache \
-    gcc=13.2.1_git20231014-r0 \
-    musl-dev=1.2.4_git20230717-r5 \
-    libffi-dev=3.4.4-r3 \
-    openssl-dev=3.1.8-r1 \
-    libxml2-dev=2.11.8-r3 \
-    libxslt-dev=1.1.39-r1 \
-    zlib-dev=1.3.1-r0 \
-    git=2.43.7-r0 \
-    curl=8.14.1-r2 \
-    jq=1.7.1-r0 \
-    openssh-client=9.6_p1-r2 \
-    zip=3.0-r12 \
-    unzip=6.0-r14
+    gcc=15.2.0-r2 \
+    musl-dev=1.2.5-r21 \
+    libffi-dev=3.5.2-r0 \
+    openssl-dev=3.5.5-r0 \
+    libxml2-dev=2.13.9-r0 \
+    libxslt-dev=1.1.43-r3 \
+    zlib-dev=1.3.2-r0 \
+    git=2.52.0-r0 \
+    curl=8.17.0-r1 \
+    jq=1.8.1-r0 \
+    openssh=10.2_p1-r0 \
+    zip=3.0-r13 \
+    unzip=6.0-r16
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
@@ -25,34 +25,34 @@ RUN python -m venv /module/venv \
     && /module/venv/bin/pip install --no-cache-dir --retries 10 --timeout 60 -r /build/requirements.txt
 
 RUN curl -sSL -o /usr/local/bin/sops \
-    https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
+    https://github.com/mozilla/sops/releases/download/v3.12.2/sops-v3.12.2.linux.amd64 \
     && chmod +x /usr/local/bin/sops
 
 ### Stage 2 - Runtime
-FROM python:3.12-alpine3.19 AS runtime
+FROM python:3.12-alpine3.23 AS runtime
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 
 RUN apk add --no-cache \
-    gcc=13.2.1_git20231014-r0 \
-    musl-dev=1.2.4_git20230717-r5 \
-    bash=5.2.21-r0 \
-    ca-certificates=20240226-r0 \
-    tar=1.35-r2 \
-    curl=8.14.1-r2 \
-    jq=1.7.1-r0 \
-    yq=4.35.2-r4 \
-    gettext=0.22.3-r0 \
+    gcc=15.2.0-r2 \
+    musl-dev=1.2.5-r21 \
+    bash=5.3.3-r1 \
+    ca-certificates=20251003-r0 \
+    tar=1.35-r4 \
+    curl=8.17.0-r1 \
+    jq=1.8.1-r0 \
+    yq-go=4.52.5 \
+    gettext=0.24.1-r1 \
     sed=4.9-r2 \
-    age=1.1.1-r11 \
-    git=2.43.7-r0 \
-    libffi=3.4.4-r3 \
-    openssl=3.1.8-r1 \
-    openssh-client=9.6_p1-r2 \
-    zip=3.0-r12 \
-    unzip=6.0-r14 \
-    sudo=1.9.15_p2-r0
+    age=1.2.1-r13 \
+    git=2.52.0-r0 \
+    libffi=3.5.2-r0 \
+    openssl=3.5.5-r0 \
+    openssh=10.2_p1-r0 \
+    zip=3.0-r13 \
+    unzip=6.0-r16 \
+    sudo=1.9.17_p2-r0
 
 COPY --from=build /module /module
 COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
