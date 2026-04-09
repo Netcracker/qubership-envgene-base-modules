@@ -42,7 +42,7 @@ RUN apk add --no-cache \
     tar=1.35-r4 \
     curl=8.17.0-r1 \
     jq=1.8.1-r0 \
-    yq=4.52.5 \
+    yq-go=4.49.2-r4 \
     gettext=0.24.1-r1 \
     sed=4.9-r2 \
     age=1.2.1-r13 \
