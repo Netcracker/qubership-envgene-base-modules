@@ -3,7 +3,7 @@ FROM python:3.12-alpine3.23 AS build
 
 RUN apk add --no-cache \
     gcc=15.2.0-r2 \
-    musl-dev=1.2.5-r21 \
+    musl-dev=1.2.5-r22 \
     libffi-dev=3.5.2-r0 \
     openssl-dev=3.5.6-r0 \
     libxml2-dev=2.13.9-r0 \
