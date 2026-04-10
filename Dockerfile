@@ -36,7 +36,7 @@ COPY build/constraint.txt /build/constraint.txt
 
 RUN apk add --no-cache \
     gcc=15.2.0-r2 \
-    musl-dev=1.2.5-r21 \
+    musl-dev=1.2.5-r22 \
     bash=5.3.3-r1 \
     ca-certificates=20251003-r0 \
     tar=1.35-r4 \
