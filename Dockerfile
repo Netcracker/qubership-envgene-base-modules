@@ -70,4 +70,5 @@ ENV PATH=/module/venv/bin:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
+RUN which update-ca-certificates
 WORKDIR /module/scripts
