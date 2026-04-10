@@ -28,6 +28,7 @@ RUN curl -sSL -o /usr/local/bin/sops \
     https://github.com/mozilla/sops/releases/download/v3.12.2/sops-v3.12.2.linux.amd64 \
     && chmod +x /usr/local/bin/sops
 
+
 ### Stage 2 - Runtime
 FROM python:3.12-alpine3.23 AS runtime
 
@@ -66,9 +67,8 @@ RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci && \
     chmod 754 /module/scripts/* && \
     chmod +x /usr/local/bin/sops
 
-ENV PATH=/module/venv/bin:$PATH \
+ENV PATH="/usr/sbin:/usr/bin:/sbin:/bin:/module/venv/bin" \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-RUN which update-ca-certificates
 WORKDIR /module/scripts
