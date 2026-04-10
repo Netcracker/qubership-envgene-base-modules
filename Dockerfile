@@ -5,7 +5,7 @@ RUN apk add --no-cache \
     gcc=15.2.0-r2 \
     musl-dev=1.2.5-r21 \
     libffi-dev=3.5.2-r0 \
-    openssl-dev=3.5.5-r0 \
+    openssl-dev=3.5.6-r0 \
     libxml2-dev=2.13.9-r0 \
     libxslt-dev=1.1.43-r3 \
     zlib-dev=1.3.2-r0 \
