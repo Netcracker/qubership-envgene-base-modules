@@ -48,7 +48,7 @@ RUN apk add --no-cache \
     age=1.2.1-r13 \
     git=2.52.0-r0 \
     libffi=3.5.2-r0 \
-    openssl=3.5.5-r0 \
+    openssl=3.5.6-r0 \
     openssh=10.2_p1-r0 \
     zip=3.0-r13 \
     unzip=6.0-r16 \
