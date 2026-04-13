@@ -3,7 +3,7 @@ FROM python:3.12-alpine3.19 AS build
 
 RUN apk add --no-cache \
     gcc=13.2.1_git20231014-r0 \
-    musl-dev=1.2.4_git20230717-r5 \
+    musl-dev=1.2.4_git20230717-r6 \
     libffi-dev=3.4.4-r3 \
     openssl-dev=3.1.8-r1 \
     libxml2-dev=2.11.8-r3 \
@@ -36,7 +36,7 @@ COPY build/constraint.txt /build/constraint.txt
 
 RUN apk add --no-cache \
     gcc=13.2.1_git20231014-r0 \
-    musl-dev=1.2.4_git20230717-r5 \
+    musl-dev=1.2.4_git20230717-r6 \
     bash=5.2.21-r0 \
     ca-certificates=20240226-r0 \
     tar=1.35-r2 \
