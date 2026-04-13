@@ -6,7 +6,7 @@ cryptography==38.0.0
 # transitive dependencies for shyaml
 pyyaml==5.4.1
 
-ruamel.yaml==0.18.17
+ruamel.yaml==0.19.1
 
 PyGithub==1.55
 
