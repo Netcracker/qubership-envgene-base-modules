@@ -1,5 +1,5 @@
 ### Stage 1 - Build
-FROM python:3.12-alpine3.19 AS build
+FROM python:3.13-alpine3.19 AS build
 
 RUN apk add --no-cache \
     gcc=13.2.1_git20231014-r0 \
@@ -29,7 +29,7 @@ RUN curl -sSL -o /usr/local/bin/sops \
     && chmod +x /usr/local/bin/sops
 
 ### Stage 2 - Runtime
-FROM python:3.12-alpine3.19 AS runtime
+FROM python:3.13-alpine3.19 AS runtime
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
