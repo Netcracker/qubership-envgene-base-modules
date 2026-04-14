@@ -69,11 +69,3 @@ ENV PATH="/usr/sbin:/usr/bin:/sbin:/bin:/module/venv/bin" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /module/scripts
-
-RUN echo "===== PATH =====" && echo $PATH && \
-    echo "===== update-ca-certificates =====" && \
-    command -v update-ca-certificates || echo "NOT FOUND" && \
-    ls -l /usr/sbin/update-ca-certificates || echo "NO FILE" && \
-    echo "===== sops =====" && \
-    command -v sops || echo "SOPS NOT FOUND" && \
-    sops --version || true
