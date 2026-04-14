@@ -37,6 +37,7 @@ RUN apk add --no-cache \
     musl-dev=1.2.5-r23 \
     bash=5.3.3-r1 \
     ca-certificates=20251003-r0 \
+    ca-certificates-bundle=20251003-r0 \
     tar=1.35-r4 \
     curl=8.17.0-r1 \
     jq=1.8.1-r0 \
@@ -68,3 +69,11 @@ ENV PATH="/usr/sbin:/usr/bin:/sbin:/bin:/module/venv/bin" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /module/scripts
+
+RUN echo "===== PATH =====" && echo $PATH && \
+    echo "===== update-ca-certificates =====" && \
+    command -v update-ca-certificates || echo "NOT FOUND" && \
+    ls -l /usr/sbin/update-ca-certificates || echo "NO FILE" && \
+    echo "===== sops =====" && \
+    command -v sops || echo "SOPS NOT FOUND" && \
+    sops --version || true
