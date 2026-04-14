@@ -14,7 +14,8 @@ RUN apk add --no-cache \
     jq=1.8.1-r0 \
     openssh=10.2_p1-r0 \
     zip=3.0-r13 \
-    unzip=6.0-r16
+    unzip=6.0-r16 \
+    sops=3.11.0-r5
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
@@ -23,10 +24,6 @@ COPY build/requirements.txt /build/requirements.txt
 RUN python -m venv /module/venv \
     && /module/venv/bin/pip install --no-cache-dir pip==26.0.1 setuptools==81.0.0 wheel==0.46.3 \
     && /module/venv/bin/pip install --no-cache-dir --retries 10 --timeout 60 -r /build/requirements.txt
-
-RUN curl -sSL -o /usr/local/bin/sops \
-    https://github.com/mozilla/sops/releases/download/v3.12.2/sops-v3.12.2.linux.amd64 \
-    && chmod +x /usr/local/bin/sops
 
 
 ### Stage 2 - Runtime
@@ -53,10 +50,10 @@ RUN apk add --no-cache \
     openssh=10.2_p1-r0 \
     zip=3.0-r13 \
     unzip=6.0-r16 \
-    sudo=1.9.17_p2-r0
+    sudo=1.9.17_p2-r0 \
+    sops=3.11.0-r5
 
 COPY --from=build /module /module
-COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
 COPY scripts /module/scripts
 
 RUN mkdir -p /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache && \
@@ -64,8 +61,7 @@ RUN mkdir -p /__w/_temp/_runner_file_commands /github/workspace /github/home /bu
 
 RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci && \
     chown ci:ci -R /module && \
-    chmod 754 /module/scripts/* && \
-    chmod +x /usr/local/bin/sops
+    chmod 754 /module/scripts/*
 
 ENV PATH="/usr/sbin:/usr/bin:/sbin:/bin:/module/venv/bin" \
     PYTHONUNBUFFERED=1 \
