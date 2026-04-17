@@ -1,0 +1,28 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "06:00"
+      timezone: "Europe/Moscow"
+    allow:
+      - dependency-type: "direct"
+        update-types:
+          - "version-update:semver-minor"
+    commit-message:
+      prefix: "feat:"
+
+  - package-ecosystem: "pip"
+    directory: "/build"
+    schedule:
+      interval: "daily"
+      time: "06:00"
+      timezone: "Europe/Moscow"
+    allow:
+      - dependency-type: "direct"
+        update-types:
+          - "version-update:semver-minor"
+    commit-message:
+      prefix: "feat:"
