@@ -3,7 +3,7 @@ version: 2
 multi-ecosystem-groups:
   deps:
     schedule:
-      interval: "daily"
+      interval: "monthly"
       time: "06:00"
       timezone: "Europe/Moscow"
     commit-message:
