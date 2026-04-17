@@ -1,28 +1,31 @@
 ---
 version: 2
-updates:
-  - package-ecosystem: "docker"
-    directory: "/"
+multi-ecosystem-groups:
+  deps:
     schedule:
       interval: "daily"
       time: "06:00"
       timezone: "Europe/Moscow"
-    allow:
-      - dependency-type: "direct"
-        update-types:
-          - "version-update:semver-patch"
     commit-message:
       prefix: "feat:"
 
-  - package-ecosystem: "pip"
-    directory: "/build"
-    schedule:
-      interval: "daily"
-      time: "06:00"
-      timezone: "Europe/Moscow"
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    patterns:
+      - "*"
+    multi-ecosystem-group: "deps"
     allow:
       - dependency-type: "direct"
         update-types:
           - "version-update:semver-patch"
-    commit-message:
-      prefix: "feat:"
+
+  - package-ecosystem: "pip"
+    directory: "/build"
+    patterns:
+      - "*"
+    multi-ecosystem-group: "deps"
+    allow:
+      - dependency-type: "direct"
+        update-types:
+          - "version-update:semver-patch"
