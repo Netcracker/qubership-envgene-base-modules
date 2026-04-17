@@ -1,7 +1,7 @@
 shyaml==0.6.2
 yamale==4.0.4
 prettytable==3.5.0
-cryptography==38.0.0
+cryptography==38.0.4
 
 # transitive dependencies for shyaml
 pyyaml==5.4.1
@@ -11,7 +11,7 @@ ruamel.yaml==0.18.17
 PyGithub==1.55
 
 ## transitive dependencies for python-gitlab
-certifi==2022.6.15
+certifi==2022.6.15.2
 #charset-normalizer==2.1.1
 #click==8.1.3
 #idna==3.4
