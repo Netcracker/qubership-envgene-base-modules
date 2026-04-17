@@ -25,6 +25,8 @@ updates:
     patterns:
       - "*"
     multi-ecosystem-group: "deps"
+    ignore:
+      - dependency-name: "cython"
     allow:
       - dependency-type: "direct"
         update-types:

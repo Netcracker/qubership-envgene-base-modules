@@ -22,7 +22,7 @@ COPY build/requirements.txt /build/requirements.txt
 
 RUN python -m venv /module/venv \
     && /module/venv/bin/pip install --no-cache-dir pip==26.0.1 setuptools==81.0.0 wheel==0.46.3 \
-    && /module/venv/bin/pip install --no-cache-dir --retries 10 --timeout 60 -r /build/requirements.txt
+    && /module/venv/bin/pip install --no-cache-dir --build-constraint /build/constraint.txt --retries 10 --timeout 60 -r /build/requirements.txt
 
 RUN curl -sSL -o /usr/local/bin/sops \
     https://github.com/mozilla/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64 \
