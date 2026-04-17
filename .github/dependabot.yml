@@ -12,7 +12,7 @@ updates:
         update-types:
           - "version-update:semver-minor"
     commit-message:
-      prefix: "feat: Check deps updates by Github Dependabot "
+      prefix: "feat:"
 
   - package-ecosystem: "pip"
     directory: "/build"
@@ -25,4 +25,4 @@ updates:
         update-types:
           - "version-update:semver-minor"
     commit-message:
-      prefix: "feat: Check deps updates by Github Dependabot "
+      prefix: "feat:"
