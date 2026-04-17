@@ -8,7 +8,7 @@ pyyaml==5.4.1
 
 ruamel.yaml==0.18.17
 
-PyGithub==1.55
+PyGithub==1.59.1
 
 ## transitive dependencies for python-gitlab
 certifi==2022.6.15
