@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   main:
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
