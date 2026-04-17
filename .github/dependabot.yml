@@ -10,7 +10,7 @@ updates:
     allow:
       - dependency-type: "direct"
         update-types:
-          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     commit-message:
       prefix: "feat:"
 
@@ -23,6 +23,6 @@ updates:
     allow:
       - dependency-type: "direct"
         update-types:
-          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     commit-message:
       prefix: "feat:"
