@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "semanticCommits": "disabled",
+  "commitMessagePrefix": "feat:",
+  "schedule": ["* * * * *"],
+  "packageRules": [
+    {
+      "description": "Only semver patch updates (Z in X.Y.Z); no minor or major bumps",
+      "matchUpdateTypes": ["minor", "major"],
+      "enabled": false
+    },
+    {
+      "description": "Keep cython<3 constraint unmanaged (see build/constraint.txt)",
+      "matchPackageNames": ["cython"],
+      "enabled": false
+    }
+  ]
+}
