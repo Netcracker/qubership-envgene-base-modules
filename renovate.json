@@ -15,6 +15,11 @@
       "description": "Keep cython<3 constraint unmanaged (see build/constraint.txt)",
       "matchPackageNames": ["cython"],
       "enabled": false
+    },
+    {
+      "description": "One PR for all Dockerfile + requirements updates",
+      "matchManagers": ["dockerfile", "pip_requirements"],
+      "groupName": "docker-and-python-deps"
     }
   ]
 }
