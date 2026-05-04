@@ -4,7 +4,7 @@
   "enabledManagers": ["dockerfile", "pip_requirements"],
   "semanticCommits": "disabled",
   "commitMessagePrefix": "feat:",
-  "schedule": ["* * * * *"],
+  "schedule": ["* * 1,15 * *"],
   "packageRules": [
     {
       "description": "Only semver patch updates (Z in X.Y.Z); no minor or major bumps",
