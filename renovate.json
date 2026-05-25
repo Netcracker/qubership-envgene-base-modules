@@ -1,13 +1,24 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "dependencyDashboard": false,
   "enabledManagers": ["dockerfile", "pip_requirements"],
   "semanticCommits": "disabled",
   "commitMessagePrefix": "feat:",
   "schedule": ["* * 1,15 * *"],
+  "vulnerabilityAlerts": {
+    "groupName": "docker-and-python-deps",
+    "packageRules": [
+      {
+        "description": "Security PRs: patch only (Z in X.Y.Z), no minor or major",
+        "matchUpdateTypes": ["minor", "major"],
+        "enabled": false
+      }
+    ]
+  },
   "packageRules": [
     {
-      "description": "Only semver patch updates (Z in X.Y.Z); no minor or major bumps",
+      "description": "Regular PRs: patch only (Z in X.Y.Z), no minor or major",
       "matchUpdateTypes": ["minor", "major"],
       "enabled": false
     },
@@ -17,7 +28,7 @@
       "enabled": false
     },
     {
-      "description": "One PR for all Dockerfile + requirements updates",
+      "description": "Single PR for all Dockerfile + pip_requirements updates",
       "matchManagers": ["dockerfile", "pip_requirements"],
       "groupName": "docker-and-python-deps"
     }
