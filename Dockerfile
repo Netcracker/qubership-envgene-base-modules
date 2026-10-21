@@ -6,8 +6,6 @@ RUN apk add --no-cache \
     'musl-dev=1.2.5-r23' \
     'libffi-dev=3.5.2-r0' \
     'openssl-dev=3.5.9-r0' \
-    'libxml2-dev=2.13.9-r1' \
-    'libxslt-dev=1.1.43-r3' \
     'zlib-dev=1.3.2-r0' \
     'git=2.52.0-r0' \
     'curl=8.22.0-r0' \
@@ -35,8 +33,6 @@ COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
 
 RUN apk add --no-cache \
-    'gcc=15.2.0-r2' \
-    'musl-dev=1.2.5-r23' \
     'bash=5.3.3-r1' \
     'ca-certificates=20260909-r0' \
     'tar=1.35-r4' \
@@ -54,17 +50,15 @@ RUN apk add --no-cache \
     'unzip=6.0-r16' \
     'sudo=1.9.17_p2-r0'
 
-COPY --from=build /module /module
+RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci
+
+COPY --from=build --chown=ci:ci /module /module
 COPY --from=build /usr/local/bin/sops /usr/local/bin/sops
-COPY scripts /module/scripts
+COPY --chown=ci:ci scripts /module/scripts
 
 RUN mkdir -p /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache && \
-    chmod 777 /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache
-
-RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci && \
-    chown ci:ci -R /module && \
-    chmod 754 /module/scripts/* && \
-    chmod +x /usr/local/bin/sops
+    chmod 777 /__w/_temp/_runner_file_commands /github/workspace /github/home /builds /cache && \
+    chmod 754 /module/scripts/*
 
 ENV PATH=/module/venv/bin:$PATH \
     PYTHONUNBUFFERED=1 \
