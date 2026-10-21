@@ -7,12 +7,7 @@ RUN apk add --no-cache \
     'libffi-dev=3.5.2-r0' \
     'openssl-dev=3.5.9-r0' \
     'zlib-dev=1.3.2-r1' \
-    'git=2.52.0-r0' \
-    'curl=8.22.0-r0' \
-    'jq=1.8.2-r0' \
-    'openssh-client=10.2_p1-r0' \
-    'zip=3.0-r13' \
-    'unzip=6.0-r16'
+    'curl=8.22.0-r0'
 
 COPY build/pip.conf /etc/pip.conf
 COPY build/constraint.txt /build/constraint.txt
@@ -29,9 +24,6 @@ RUN curl -sSL -o /usr/local/bin/sops \
 ### Stage 2 - Runtime
 FROM python:3.12-alpine3.23 AS runtime
 
-COPY build/pip.conf /etc/pip.conf
-COPY build/constraint.txt /build/constraint.txt
-
 RUN apk add --no-cache \
     'bash=5.3.3-r1' \
     'ca-certificates=20261020-r0' \
@@ -47,8 +39,7 @@ RUN apk add --no-cache \
     'openssl=3.5.9-r0' \
     'openssh-client=10.2_p1-r0' \
     'zip=3.0-r13' \
-    'unzip=6.0-r16' \
-    'sudo=1.9.17_p2-r0'
+    'unzip=6.0-r16'
 
 RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci
 
