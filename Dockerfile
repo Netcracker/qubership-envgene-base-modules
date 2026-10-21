@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     'musl-dev=1.2.5-r23' \
     'libffi-dev=3.5.2-r0' \
     'openssl-dev=3.5.9-r0' \
-    'zlib-dev=1.3.2-r0' \
+    'zlib-dev=1.3.2-r1' \
     'git=2.52.0-r0' \
     'curl=8.22.0-r0' \
     'jq=1.8.2-r0' \
@@ -34,7 +34,7 @@ COPY build/constraint.txt /build/constraint.txt
 
 RUN apk add --no-cache \
     'bash=5.3.3-r1' \
-    'ca-certificates=20260909-r0' \
+    'ca-certificates=20261020-r0' \
     'tar=1.35-r4' \
     'curl=8.22.0-r0' \
     'jq=1.8.2-r0' \
