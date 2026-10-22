@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "dependencyDashboard": false,
-  "enabledManagers": ["dockerfile", "pip_requirements"],
+  "enabledManagers": ["dockerfile"],
   "semanticCommits": "disabled",
   "commitMessagePrefix": "feat:",
   "schedule": ["* * 1,15 * *"],
@@ -23,13 +23,8 @@
       "enabled": false
     },
     {
-      "description": "Keep cython<3 constraint unmanaged (see build/constraint.txt)",
-      "matchPackageNames": ["cython"],
-      "enabled": false
-    },
-    {
-      "description": "Single PR for all Dockerfile + pip_requirements updates",
-      "matchManagers": ["dockerfile", "pip_requirements"],
+      "description": "Single PR for all Dockerfile updates",
+      "matchManagers": ["dockerfile"],
       "groupName": "docker-and-python-deps"
     }
   ]
