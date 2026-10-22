@@ -1,5 +1,5 @@
 ### Stage 1 - Build
-FROM python:3.12-alpine3.23 AS build
+FROM alpine:3.23 AS build
 
 RUN apk add --no-cache \
     'curl=8.22.0-r0'
@@ -9,16 +9,17 @@ RUN curl -sSL -o /usr/local/bin/sops \
     && chmod +x /usr/local/bin/sops
 
 ### Stage 2 - Runtime
-FROM python:3.12-alpine3.23 AS runtime
+FROM alpine:3.23 AS runtime
 
 RUN apk add --no-cache \
+    'python3=3.12.15-r0' \
+    'python3-pyc=3.12.15-r0' \
     'bash=5.3.3-r1' \
     'ca-certificates=20261020-r0' \
     'tar=1.35-r4' \
     'curl=8.22.0-r0' \
     'jq=1.8.2-r0' \
     'yq=4.49.2-r6' \
-    'gettext=0.24.1-r1' \
     'sed=4.9-r2' \
     'age=1.2.1-r15' \
     'git=2.52.0-r0' \
