@@ -19,9 +19,7 @@ RUN apk add --no-cache \
     'tar=1.35-r4' \
     'curl=8.22.0-r0' \
     'jq=1.8.2-r0' \
-    'yq=4.49.2-r6' \
     'sed=4.9-r2' \
-    'age=1.2.1-r15' \
     'git=2.52.0-r0' \
     'libffi=3.5.2-r0' \
     'openssl=3.5.9-r0' \
