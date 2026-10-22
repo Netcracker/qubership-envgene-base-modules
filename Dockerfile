@@ -17,15 +17,10 @@ RUN apk add --no-cache \
     'bash=5.3.3-r1' \
     'ca-certificates=20261020-r0' \
     'tar=1.35-r4' \
-    'curl=8.22.0-r0' \
-    'jq=1.8.2-r0' \
-    'sed=4.9-r2' \
     'git=2.52.0-r0' \
     'libffi=3.5.2-r0' \
     'openssl=3.5.9-r0' \
-    'openssh-client=10.2_p1-r0' \
-    'zip=3.0-r13' \
-    'unzip=6.0-r16'
+    'zip=3.0-r13'
 
 RUN addgroup ci && adduser -D -h /module/ -s /bin/bash -G ci ci
 
