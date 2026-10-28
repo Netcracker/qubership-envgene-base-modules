@@ -2,7 +2,7 @@
 FROM alpine:3.23 AS build
 
 RUN apk add --no-cache \
-    'curl=8.22.0-r0'
+    'curl=8.23.0-r0'
 
 RUN curl -sSL -o /usr/local/bin/sops \
     https://github.com/getsops/sops/releases/download/v3.13.3/sops-v3.13.3.linux.amd64 \
