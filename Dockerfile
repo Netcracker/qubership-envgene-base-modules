@@ -17,7 +17,7 @@ RUN apk add --no-cache \
     'bash=5.3.3-r1' \
     'ca-certificates=20261020-r0' \
     'tar=1.35-r4' \
-    'git=2.52.0-r0' \
+    'git=2.52.1-r0' \
     'libffi=3.5.2-r0' \
     'openssl=3.5.9-r0' \
     'zip=3.0-r13'
