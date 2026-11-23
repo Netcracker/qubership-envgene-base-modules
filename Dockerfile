@@ -1,5 +1,5 @@
 ### Stage 1 - Build
-FROM alpine:3.23 AS build
+FROM alpine:3.23@sha256:469c9ea410b9215eaee7976ba6c0639039b444be8e5d638f7abbada189971eb2 AS build
 
 RUN apk add --no-cache \
     'curl=8.23.0-r0'
@@ -9,7 +9,7 @@ RUN curl -sSL -o /usr/local/bin/sops \
     && chmod +x /usr/local/bin/sops
 
 ### Stage 2 - Runtime
-FROM alpine:3.23 AS runtime
+FROM alpine:3.23@sha256:469c9ea410b9215eaee7976ba6c0639039b444be8e5d638f7abbada189971eb2 AS runtime
 
 RUN apk add --no-cache \
     'python3=3.12.16-r0' \
